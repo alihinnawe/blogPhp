@@ -7,12 +7,13 @@ $adminEmail = (isset($_POST["adminEmail"]) && is_string($_POST["adminEmail"])) ?
 $adminPassword = (isset($_POST["adminPassword"]) && is_string($_POST["adminPassword"])) ? $_POST["adminPassword"] : "";
 
 $admin_info = admin_return($adminEmail);
-$admin_login_details = password_verify($adminPassword, $admin_info);
-if ($admin_login_details) {
+
+if ($admin_info && password_verify($adminPassword, $admin_info)) {
     echo 'verified';
     $_SESSION['adminEmail'] = $adminEmail;
-    echo  $adminEmail;
-};
+} else {
+    echo 'Invalid login';
+}
 
 
 if (!isset($_SESSION['adminEmail'])) : ?>

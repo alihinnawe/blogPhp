@@ -6,7 +6,7 @@ try {
     $db = new PDO(
         "mysql:dbname=blog;host=localhost;charset=utf8",
         "blog",
-        "root"
+        "your_database_password"
     );
     $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
     $sql = "SELECT * FROM posts";
@@ -96,8 +96,8 @@ function admin_return($adminEmail)
     $query->bindParam(':adminEmail', $adminEmail);
     $query->execute();
 
-    $result = $query->fetch(PDO::FETCH_ASSOC); // Fetch as an associative array
+    $result = $query->fetch(PDO::FETCH_ASSOC); 
 
-    return $result ? $result["password"] : null; // Return only the password string
+    return $result ? $result["password"] : null; 
 }
 
